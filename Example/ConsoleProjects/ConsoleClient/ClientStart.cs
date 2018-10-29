@@ -7,7 +7,6 @@ namespace ConsoleClient {
         static PESocket<ClientSession, NetMsg> client;
 
         static void Main(string[] args) {
-            Console.WriteLine("Client Start...");
             client = new PESocket<ClientSession, NetMsg>();
             client.StartAsClient(IPCfg.srvIP, IPCfg.srvPort);
 

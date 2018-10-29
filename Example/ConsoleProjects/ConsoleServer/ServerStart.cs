@@ -5,7 +5,6 @@ using Protocol;
 namespace ConsoleServer {
     class ServerStart {
         static void Main(string[] args) {
-            Console.WriteLine("Client Start...");
             PESocket<ServerSession, NetMsg> server = new PESocket<ServerSession, NetMsg>();
             server.StartAsServer(IPCfg.srvIP, IPCfg.srvPort);
 
