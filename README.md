@@ -55,7 +55,7 @@ protected override void OnReciveMsg(NetMsg msg) {
 }
 ```
 
-### 6.第三方日志工具接中
+### 6.第三方日志工具接口
 通过SetLog(bool log = true, Action<string, int> logCB = null)接口，可以传入第三方的日志显示工具。（下面以Unity为例，实现在Unity编辑器控制台中输出日志信息）
 ``` c#
 skt.SetLog(true, (string msg, int lv) => {
