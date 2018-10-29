@@ -43,7 +43,7 @@ this.SendMsg(msg);
 ```
 
 ### 5.接收网络消息
-在自定义的ClientSession/ServerSession类中实现OnReciveMsg(T msg)可以接收网络消息。
+在自定义的ClientSession/ServerSession类中重写OnReciveMsg(T msg)可以接收网络消息。
 ``` c#
 protected override void OnReciveMsg(NetMsg msg) {
     base.OnReciveMsg(msg);
