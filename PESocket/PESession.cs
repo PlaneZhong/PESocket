@@ -1,14 +1,25 @@
-﻿using System;
+﻿/****************************************************
+	文件：PESession.cs
+	作者：Plane
+	邮箱: 1785275942@qq.com
+	日期：2018/10/30 11:20   	
+	功能：网络会话管理
+*****************************************************/
+
+using System;
 using System.Net.Sockets;
 
 namespace PENet {
     public abstract class PESession<T> where T : PEMsg {
         private Socket skt;
+        private Action closeCB;
 
         #region Recevie
-        public void StartRcvData(Socket skt) {
+        public void StartRcvData(Socket skt, Action closeCB) {
             try {
                 this.skt = skt;
+                this.closeCB = closeCB;
+
                 OnConnected();
 
                 PEPkg pack = new PEPkg();
@@ -52,9 +63,8 @@ namespace PENet {
                 }
                 else {
                     OnDisConnected();
-                    skt.Close();
+                    Clear();
                 }
-
             }
             catch (Exception e) {
                 PETool.LogMsg("RcvHeadError:" + e.Message, LogLevel.Error);
@@ -92,7 +102,7 @@ namespace PENet {
                 }
                 else {
                     OnDisConnected();
-                    skt.Close();
+                    Clear();
                 }
             }
             catch (Exception e) {
@@ -145,6 +155,15 @@ namespace PENet {
         }
         #endregion
 
+        /// <summary>
+        /// Release Resource
+        /// </summary>
+        private void Clear() {
+            if (closeCB != null) {
+                closeCB();
+            }
+            skt.Close();
+        }
 
         /// <summary>
         /// Connect network

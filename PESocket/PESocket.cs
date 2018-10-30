@@ -1,4 +1,12 @@
-﻿using System;
+﻿/****************************************************
+	文件：PESocket.cs
+	作者：Plane
+	邮箱: 1785275942@qq.com
+	日期：2018/10/30 11:20   	
+	功能：PESocekt核心类
+*****************************************************/
+
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
@@ -36,7 +44,11 @@ namespace PENet {
             try {
                 Socket clientSkt = skt.EndAccept(ar);
                 T session = new T();
-                session.StartRcvData(clientSkt);
+                session.StartRcvData(clientSkt, () => {
+                    if (sessionLst.Contains(session)) {
+                        sessionLst.Remove(session);
+                    }
+                });
                 sessionLst.Add(session);
             }
             catch (Exception e) {
@@ -64,7 +76,7 @@ namespace PENet {
             try {
                 skt.EndConnect(ar);
                 session = new T();
-                session.StartRcvData(skt);
+                session.StartRcvData(skt, null);
             }
             catch (Exception e) {
                 PETool.LogMsg(e.Message, LogLevel.Error);
