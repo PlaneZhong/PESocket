@@ -3,7 +3,7 @@ using Protocol;
 
 public class ServerSession : PESession<NetMsg> {
     protected override void OnConnected() {
-        PETool.LogMsg("Client Connect.");
+        PETool.LogMsg("Client OnLine.");
         SendMsg(new NetMsg {
             text = "Welcome to connect!"
         });
@@ -17,5 +17,6 @@ public class ServerSession : PESession<NetMsg> {
     }
 
     protected override void OnDisConnected() {
+        PETool.LogMsg("Client OffLine.");
     }
 }
