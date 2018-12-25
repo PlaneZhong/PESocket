@@ -44,12 +44,12 @@ namespace PENet {
             try {
                 Socket clientSkt = skt.EndAccept(ar);
                 T session = new T();
+                sessionLst.Add(session);
                 session.StartRcvData(clientSkt, () => {
                     if (sessionLst.Contains(session)) {
                         sessionLst.Remove(session);
                     }
                 });
-                sessionLst.Add(session);
             }
             catch (Exception e) {
                 PETool.LogMsg(e.Message, LogLevel.Error);

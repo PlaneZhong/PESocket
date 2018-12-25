@@ -79,11 +79,6 @@ namespace PENet {
         private void RcvBodyData(IAsyncResult ar) {
             try {
                 PEPkg pack = (PEPkg)ar.AsyncState;
-                if (skt.Available == 0) {
-                    OnDisConnected();
-                    Clear();
-                    return;
-                }
                 int len = skt.EndReceive(ar);
                 if (len > 0) {
                     pack.bodyIndex += len;
@@ -117,7 +112,6 @@ namespace PENet {
             }
             catch (Exception e) {
                 PETool.LogMsg("RcvBodyError:" + e.Message, LogLevel.Error);
-
             }
         }
         #endregion
