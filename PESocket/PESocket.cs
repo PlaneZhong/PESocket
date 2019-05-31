@@ -90,6 +90,10 @@ namespace PENet {
             }
         }
 
+        public List<T> GetSesstionLst() {
+            return sessionLst;
+        }
+
         /// <summary>
         /// Log
         /// </summary>
