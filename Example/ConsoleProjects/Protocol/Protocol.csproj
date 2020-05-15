@@ -35,9 +35,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="PESocket">
-      <HintPath>..\..\UnityProjects\UnityClient\Assets\PESocket.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\PESocket\PESocket.csproj">
+      <Project>{b4239e0b-82f4-4f9a-a330-0afd46e88d02}</Project>
+      <Name>PESocket</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
