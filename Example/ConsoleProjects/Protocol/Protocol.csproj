@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PESocket">
-      <HintPath>..\..\..\PESocket\bin\Release\PESocket.dll</HintPath>
+      <HintPath>..\..\UnityProjects\UnityClient\Assets\PESocket.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
